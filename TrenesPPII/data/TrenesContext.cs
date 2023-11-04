@@ -28,6 +28,10 @@ namespace TrenesPPII.data
 
         public virtual DbSet<spPuestosDisponibles> PuestosDisponibles { get; set; }
 
+        public virtual DbSet<factura> factura { get; set; }
+
+        public virtual DbSet<detalle_factura> Detalle_Facturas { get; set; }
+
         public TrenesContext(DbContextOptions<TrenesContext> options)
         : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -153,7 +157,7 @@ namespace TrenesPPII.data
                     .IsUnicode(false);
                 entity.Property(e => e.FechaEdit).HasColumnType("datetime");
                 entity.Property(e => e.FechaIni).HasColumnType("datetime");
-                entity.Property(e => e.IrolId).HasColumnName("IRol_Id");
+               // entity.Property(e => e.IrolId).HasColumnName("IRol_Id");
                 entity.Property(e => e.Nombre)
                     .HasMaxLength(50)
                     .IsUnicode(false);

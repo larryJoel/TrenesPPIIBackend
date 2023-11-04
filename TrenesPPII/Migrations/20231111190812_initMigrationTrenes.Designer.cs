@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrenesPPII.data;
 
@@ -11,9 +12,11 @@ using TrenesPPII.data;
 namespace TrenesPPII.Migrations
 {
     [DbContext(typeof(TrenesContext))]
-    partial class TrenesContextModelSnapshot : ModelSnapshot
+    [Migration("20231111190812_initMigrationTrenes")]
+    partial class initMigrationTrenes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

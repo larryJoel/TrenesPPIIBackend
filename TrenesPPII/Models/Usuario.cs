@@ -29,11 +29,12 @@ public partial class Usuario
 
     public DateTime? FechaEdit { get; set; }
 
-    public int? IrolId { get; set; }
+    //public int? IrolId { get; set; }
 
     public string? Password { get; set; }
 
     public virtual TipoUsuario? TipoUsuario { get; set; }
 
     public virtual ICollection<UsuarioTicket> UsuarioTickets { get; set; } = new List<UsuarioTicket>();
+    public virtual ICollection<factura> facturaTickets { get; set;}= new List<factura>();
 }

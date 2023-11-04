@@ -74,7 +74,7 @@ namespace TrenesPPII.Controllers
                 user.TipoUsuario = request.TipoUsuario;
                 user.FechaIni = request.FechaIni;
                 user.FechaEdit = request.FechaEdit;
-                user.IrolId = request.IrolId;
+                //user.IrolId = request.IrolId;
                 await _context.SaveChangesAsync();
                 return Ok(user);
             }
