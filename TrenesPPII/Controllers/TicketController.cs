@@ -35,6 +35,16 @@ namespace TrenesPPII.Controllers
             return Ok(res);
         }
 
+        [HttpGet]
+        [Route("ActualizarPuestosDisp")]
+        public IActionResult ActualizarPuestosDisp()
+        {
+            _context.Database.ExecuteSqlRaw("EXEC ActualizaPuestoViajes");
+
+            // Puedes devolver cualquier respuesta adecuada a tu caso
+            return Ok("Procedimiento almacenado ejecutado correctamente");
+        }
+
 
         [HttpPost]
         [Route("Agregar")]
