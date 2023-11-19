@@ -9,6 +9,8 @@ namespace TrenesPPII.Models
         public int Id_factura { get; set; }
         public int Id_ticket { get; set; }
         public int Cantidad { get; set;}
+
+        public string descripcion { get; set; }
         public double Precio_unitario { get; set; }
         public double SubTotal { get; set; }
 

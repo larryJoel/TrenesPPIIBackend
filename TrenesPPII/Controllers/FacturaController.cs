@@ -23,6 +23,23 @@ namespace TrenesPPII.Controllers
             return Ok(listFacturas);
         }
 
+        [HttpGet]
+        [Route("Factura/id:int")]
+        public async Task<IActionResult> Factura(int id)
+        {
+            var res = await _context.factura.FindAsync(id);
+            if(res == null)
+            {
+                return BadRequest("No existe la factura");
+            }
+            else
+            {
+                return Ok(res);
+            }
+        }
+
+
+
         [HttpPost]
         [Route("Agregar")]
         public async Task<IActionResult> Agregar([FromBody] factura factura)
@@ -45,6 +62,7 @@ namespace TrenesPPII.Controllers
             {
                res.cliente_id = factura.cliente_id;
                res.fecha_emision = factura.fecha_emision;
+               res.descripcion = factura.descripcion;
                res.total = factura.total;
                await _context.SaveChangesAsync();
                return Ok(res);

@@ -8,6 +8,7 @@ namespace TrenesPPII.Models
         public int id_factura { get; set; }
         public DateTime fecha_emision { get; set; }
         public int cliente_id { get; set; }
+        public string descripcion { get; set; }
         public decimal total { get; set; }
 
         public virtual Usuario? IdCliente { get; set; }

@@ -23,6 +23,33 @@ namespace TrenesPPII.Controllers
             return Ok(listDetalleFactura);
         }
 
+        [HttpGet]
+        [Route("Detalle/Id_factura:int")]
+        public async Task<IActionResult> Detalle(int Id_factura)
+        {
+            try
+            {
+                var detallesFacturas = await _context.Detalle_Facturas
+                    .Where(df => df.Id_factura == Id_factura)
+                    .ToListAsync();
+                if(detallesFacturas != null && detallesFacturas.Any())
+                {
+                    return Ok(detallesFacturas);
+                }
+                else
+                {
+                    return BadRequest("No se encontraron detalles de factura con ese Id_factura");
+                }
+
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            
+        }
+
+
         [HttpPost]
         [Route("Agregar")]
         public async Task<IActionResult> Agregar([FromBody] detalle_factura detalle)
@@ -31,6 +58,8 @@ namespace TrenesPPII.Controllers
             await _context.SaveChangesAsync();
             return Ok(detalle);
         }
+
+
 
         [HttpPut]
         [Route("Editar/id:int")]
@@ -48,6 +77,7 @@ namespace TrenesPPII.Controllers
                 res.Cantidad = detalle.Cantidad;
                 res.Precio_unitario=detalle.Precio_unitario;
                 res.SubTotal = detalle.SubTotal;
+                res.descripcion = detalle.descripcion;
                 await _context.SaveChangesAsync();
                 return Ok(res);
             }

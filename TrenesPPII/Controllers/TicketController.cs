@@ -26,6 +26,21 @@ namespace TrenesPPII.Controllers
         }
 
         [HttpGet]
+        [Route("Ticket/id:int")]
+        public async Task<IActionResult> GetTicket(int id)
+        {
+            var ticket = await _context.Tickets.FindAsync(id);
+
+            if (ticket == null)
+            {
+                return BadRequest("No se encuentra el ticket");
+            }
+
+            return Ok(ticket);
+        }
+
+
+        [HttpGet]
         [Route("Diponibilidad")]
         public async Task<IActionResult> Diponibilidad()
         {
@@ -82,6 +97,8 @@ namespace TrenesPPII.Controllers
                 res.MetodoPagoId = ticket.MetodoPagoId;
                 res.TipoTicketId = ticket.TipoTicketId;
                 res.ViajeId = ticket.ViajeId;
+                res.Id_factura = ticket.Id_factura;
+
                 await _context.SaveChangesAsync();
                 return Ok(ticket);
             }

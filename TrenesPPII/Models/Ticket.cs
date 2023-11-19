@@ -21,6 +21,8 @@ public partial class Ticket
 
     public int? ViajeId { get; set; }
 
+    public int Id_factura { get; set; }
+
     public virtual MetodoPago? MetodoPago { get; set; }
 
     public virtual TipoTicket? TipoTicket { get; set; }
