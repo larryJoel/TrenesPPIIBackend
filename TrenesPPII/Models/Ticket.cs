@@ -23,6 +23,9 @@ public partial class Ticket
 
     public int Id_factura { get; set; }
 
+    public string? Description { get; set; }
+    public string? Tipo { get; set; }
+
     public virtual MetodoPago? MetodoPago { get; set; }
 
     public virtual TipoTicket? TipoTicket { get; set; }

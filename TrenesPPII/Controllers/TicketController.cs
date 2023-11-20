@@ -39,6 +39,25 @@ namespace TrenesPPII.Controllers
             return Ok(ticket);
         }
 
+        [HttpGet]
+        [Route("ticketPorFactura/{Id_factura:int}")]
+        public async Task<IActionResult> TickettoFact(int Id_factura)
+        {
+            var listaTickets = await _context.Tickets
+                                               .Where(t => t.Id_factura == Id_factura)
+                                               .ToListAsync();
+
+            if (listaTickets == null || !listaTickets.Any())
+            {
+                return NotFound($"No hay tickets con el número de Id_factura {Id_factura}");
+            }
+
+            return Ok(listaTickets);
+        }
+
+
+
+
 
         [HttpGet]
         [Route("Diponibilidad")]
@@ -98,6 +117,8 @@ namespace TrenesPPII.Controllers
                 res.TipoTicketId = ticket.TipoTicketId;
                 res.ViajeId = ticket.ViajeId;
                 res.Id_factura = ticket.Id_factura;
+                res.Description = ticket.Description;
+                res.Tipo=ticket.Tipo;
 
                 await _context.SaveChangesAsync();
                 return Ok(ticket);

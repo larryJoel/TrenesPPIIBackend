@@ -59,7 +59,18 @@ namespace TrenesPPII.Controllers
             return Ok(detalle);
         }
 
-
+        [HttpPost]
+        [Route("Agregar/id_factura:int")]
+        public IActionResult agregar(int id_factura)
+        {
+            var id = id_factura;
+            var res = _context.Database.SqlQuery<int>($"exec spGenerarBoletos {id}");
+            if (res == null)
+            {
+                return BadRequest("Error al generar boletos");
+            }
+            return Ok(res);
+        }
 
         [HttpPut]
         [Route("Editar/id:int")]
